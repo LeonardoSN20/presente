@@ -1,0 +1,410 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at top, #ff9fb5, transparent 40%),
+        linear-gradient(135deg, #4b1025, #8f1d3f, #240812);
+
+    color: white;
+}
+
+/* ------------------------------
+   FUNDO
+------------------------------ */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.background span {
+    position: absolute;
+
+    font-size: 25px;
+
+    animation: floating 8s linear infinite;
+
+    opacity: 0.5;
+}
+
+.background span:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.background span:nth-child(2) {
+    left: 25%;
+    animation-delay: 2s;
+}
+
+.background span:nth-child(3) {
+    left: 40%;
+    animation-delay: 4s;
+}
+
+.background span:nth-child(4) {
+    left: 55%;
+    animation-delay: 1s;
+}
+
+.background span:nth-child(5) {
+    left: 70%;
+    animation-delay: 3s;
+}
+
+.background span:nth-child(6) {
+    left: 85%;
+    animation-delay: 5s;
+}
+
+.background span:nth-child(7) {
+    left: 95%;
+    animation-delay: 6s;
+}
+
+@keyframes floating {
+
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.6;
+    }
+
+    80% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ------------------------------
+   CONTEÚDO
+------------------------------ */
+
+main {
+    width: 100%;
+    text-align: center;
+
+    position: relative;
+    z-index: 2;
+
+    padding: 20px;
+}
+
+h1 {
+    font-size: 38px;
+
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 0 10px rgba(255, 150, 180, 0.8),
+        0 0 30px rgba(255, 100, 150, 0.5);
+}
+
+.instruction {
+    font-size: 16px;
+    opacity: 0.8;
+
+    margin-bottom: 30px;
+}
+
+/* ------------------------------
+   ENVELOPE
+------------------------------ */
+
+.envelope-container {
+    width: 360px;
+    height: 250px;
+
+    margin: 0 auto 30px;
+
+    perspective: 1000px;
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    transition: transform 1s ease;
+}
+
+/* Parte de trás */
+
+.back {
+    position: absolute;
+    inset: 0;
+
+    background: #d83a61;
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* ------------------------------
+   CARTA
+------------------------------ */
+
+.letter {
+    position: absolute;
+
+    width: 90%;
+    height: 230px;
+
+    left: 5%;
+    top: 10px;
+
+    background: #fffaf5;
+
+    color: #4b1025;
+
+    padding: 25px 20px;
+
+    border-radius: 5px;
+
+    overflow-y: auto;
+
+    transform: translateY(0);
+
+    transition:
+        transform 1.5s ease,
+        z-index 0s 0.5s;
+
+    z-index: 2;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.letter h2 {
+    color: #c51f4c;
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+.letter p {
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin-bottom: 10px;
+}
+
+.languages {
+    text-align: left;
+
+    margin-top: 15px;
+}
+
+.languages p {
+    border-bottom: 1px solid #f0d6dd;
+
+    padding: 5px 0;
+}
+
+.final-message {
+    margin-top: 20px !important;
+
+    font-style: italic;
+
+    color: #8f1d3f;
+}
+
+.heart {
+    font-size: 45px;
+
+    margin-top: 10px;
+
+    animation: heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* ------------------------------
+   PARTE DA FRENTE
+------------------------------ */
+
+.front {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 70%;
+
+    background: #c92f55;
+
+    clip-path: polygon(
+        0 0,
+        50% 65%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    z-index: 4;
+
+    border-radius: 0 0 5px 5px;
+}
+
+/* ------------------------------
+   ABA DO ENVELOPE
+------------------------------ */
+
+.flap {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 65%;
+
+    background: #e14a6c;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    transform-origin: top;
+
+    transition: transform 1s ease;
+
+    z-index: 5;
+
+    backface-visibility: hidden;
+}
+
+/* ------------------------------
+   CARTA ABERTA
+------------------------------ */
+
+.envelope-container.open .flap {
+    transform: rotateX(180deg);
+
+    z-index: 1;
+}
+
+.envelope-container.open .letter {
+    transform: translateY(-190px);
+
+    height: 430px;
+
+    z-index: 6;
+
+    transition:
+        transform 1.5s ease,
+        height 1.5s ease;
+}
+
+/* ------------------------------
+   BOTÃO
+------------------------------ */
+
+button {
+    border: none;
+
+    padding: 14px 30px;
+
+    border-radius: 30px;
+
+    background: #ff4775;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 20px rgba(255, 50, 100, 0.4);
+
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+
+    background: #ff6289;
+
+    box-shadow:
+        0 8px 30px rgba(255, 50, 100, 0.6);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* ------------------------------
+   CELULAR
+------------------------------ */
+
+@media (max-width: 500px) {
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .envelope-container {
+        width: 310px;
+        height: 215px;
+    }
+
+    .letter {
+        height: 200px;
+    }
+
+    .envelope-container.open .letter {
+        transform: translateY(-160px);
+
+        height: 390px;
+    }
+
+    .letter h2 {
+        font-size: 24px;
+    }
+}
